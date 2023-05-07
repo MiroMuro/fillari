@@ -63,6 +63,7 @@ export default function Map({ navigation, route }) {
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
   // Convert milliseconds into hours, minutes and seconds. Also calculates the average speed during the trip
+
   const MillisecondConverter = (millis) => {
     const hours = Math.floor(millis / 3600000);
     const minutes = Math.floor((millis % 3600000) / 60000);
@@ -180,7 +181,8 @@ export default function Map({ navigation, route }) {
     //sets the calcutad distance.
     setTravelledDistance(distance);
   };
-
+  //Taskmanager ei toimi julkaistussa sovelluksessa kännykän näytön ollessa lukittu joten sijaintitiedot eivät päivity
+  //Kehitysympäristössä se toimi moitteetta.
   TaskManager.defineTask(LOCATION_TRACKING, async ({ data, error }) => {
     if (error) {
       console.log("LOCATION_TRACKING task ERROR:", error);
